@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Guard from '../routes/auth-guard';
 import MainApp from "../views/MainApp";
 import Login from "../components/Auth/Login";
 import Registration from "../components/Auth/Registration";
@@ -41,14 +40,14 @@ export default new Router({
       props: true,
       name: "cosplay",
       component: Cosplay,
-      beforeEnter: Guard
+
     },
     {
       path: "/newcosplay/:id",
       props: true,
       name: "newcosplay",
       component: NewCosplay,
-      beforeEnter: Guard
+
     },
 
     {
@@ -67,7 +66,7 @@ export default new Router({
       path: "/newAnime",
       name: "newanime",
       component: NewAnime,
-      beforeEnter: Guard
+
     },
   ]
 });

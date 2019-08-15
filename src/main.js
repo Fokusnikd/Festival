@@ -21,7 +21,7 @@ new Vue({
       authDomain: "festival-3bcdb.firebaseapp.com",
       databaseURL: "https://festival-3bcdb.firebaseio.com",
       projectId: "festival-3bcdb",
-      storageBucket: "",
+      storageBucket: "festival-3bcdb.appspot.com",
       messagingSenderId: "228542522089",
       appId: "1:228542522089:web:28f9b62891b9e70e"
     });
@@ -31,7 +31,7 @@ new Vue({
       }
     });
     this.$store.dispatch('fetchAnime');
-    this.$store.dispatch('fetchCosplay');
 
+    this.$store.dispatch("fetchCosplay");
   }
 }).$mount("#app");

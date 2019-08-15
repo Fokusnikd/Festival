@@ -19,6 +19,7 @@ export default {
     loadCosplay(state, payload) {
       state.cosplay = payload;
 
+
     }
   },
   actions: {
@@ -88,9 +89,6 @@ export default {
         return ad.promo;
       });
     },
-    myCosplay(state) {
-      return state.cosplay;
-    },
     cosplayById(state) {
       return adId => {
         return state.cosplay.find(ad => ad.id === adId);
@@ -98,7 +96,9 @@ export default {
     },
     cosplayById2(state) {
       return adId => {
-        return state.cosplay.find(ad => ad.animeId === adId);
+        console.log(state.cosplay)
+
+        return state.cosplay.filter(ad => ad.animeId === adId);
       }
     }
   }

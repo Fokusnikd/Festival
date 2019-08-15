@@ -4,7 +4,7 @@
       <v-flex xs12>
         <v-carousel>
           <v-carousel-item
-            v-for="(item,i) in items"
+            v-for="(item,i) in promoAnime"
             :key="i"
             :src="item.src"
             reverse-transition="fade-transition"
@@ -20,23 +20,10 @@
 
 <script>
 export default {
-  data() {
-    return {
-      items: [
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg"
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg"
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg"
-        }
-      ]
-    };
+  computed: {
+    promoAnime() {
+      return this.$store.getters.promoAnime;
+    }
   }
 };
 </script>

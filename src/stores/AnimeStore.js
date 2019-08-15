@@ -1,10 +1,11 @@
 import * as fb from 'firebase';
 class Anime {
-  constructor(title, src = "", promo = false, id = null, ) {
+  constructor(title, src = "", promo = false, id = null) {
     this.title = title,
       this.src = src,
       this.promo = promo,
       this.id = id
+
 
   }
 }
@@ -31,11 +32,13 @@ export default {
         const newAnime = new Anime(
           payload.title,
           payload.src,
-          payload.promo
+          payload.promo,
+
         )
+        console.log(newAnime)
         const fbValue = await fb.database().ref('anime').push(newAnime)
 
-        commit('createAnime', {
+        commit('createCosplay', {
           ...newAnime,
           id: fbValue.key
         })
@@ -63,7 +66,8 @@ export default {
               ad.title,
               ad.src,
               ad.promo,
-              key)
+              key,
+              ad.description)
           );
         });
         commit('loadAnime', resultAnime);

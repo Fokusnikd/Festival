@@ -12,6 +12,17 @@
             :rules="[v=> !!v|| 'Title is required']"
             required
           ></v-text-field>
+
+          <v-textarea
+            label="Description"
+            name="description"
+            type="text"
+            v-model="description"
+            rows="1"
+            :rules="[v=> !!v|| 'Description is required']"
+            required
+            auto-grow
+          ></v-textarea>
         </v-form>
         <v-layout wrap class="mb-3">
           <v-flex xs12>
@@ -47,7 +58,8 @@ export default {
   data() {
     return {
       title: "",
-      promo: false
+      promo: false,
+      description: ""
     };
   },
   computed: {

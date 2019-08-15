@@ -27,6 +27,7 @@
 export default {
   computed: {
     myAnime() {
+      console.log(this.$store.getters.anime);
       return this.$store.getters.anime;
     }
   }

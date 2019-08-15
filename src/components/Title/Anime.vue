@@ -2,7 +2,7 @@
   <v-container>
     <v-layout wrap>
       <v-flex xs12>
-        <v-card>
+        <v-card v-if="ad">
           <v-img class="white--text" height="300px" :src="ad.src">
             <v-card-title class="align-end fill-height">{{ad.title}}</v-card-title>
           </v-img>
@@ -13,7 +13,7 @@
           </v-card-text>
 
           <v-flex xs12>
-            <v-card class="mb-3" :elevation="11" v-for="cosp in cosplay" :key="cosp.id">
+            <v-card class="mb-3" :elevation="11" v-for="cosp in myCosplay" :key="cosp.id">
               <v-layout wrap>
                 <v-flex xs4 sm4>
                   <v-img class="white--text" height="150px" :src="cosp.src"></v-img>
@@ -48,17 +48,17 @@ export default {
       cosplay: []
     };
   },
+
   computed: {
     ad() {
       const id = this.id;
+
       return this.$store.getters.animeById(id);
     },
     myCosplay() {
       const id = this.id;
-
-      this.cosplay.push(this.$store.getters.cosplayById2(id));
-      console.log(this.cosplay);
-      return this.$store.getters.cosplay;
+      console.log(this.$store.getters.cosplayById2(id));
+      return this.$store.getters.cosplayById2(id);
     }
   }
 };
