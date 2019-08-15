@@ -27,15 +27,22 @@
         <v-layout wrap class="mb-3">
           <v-flex xs12>
             <v-spacer></v-spacer>
-            <v-btn class="warning">
+            <v-btn class="warning" @click="trigger">
               Upload
               <v-icon right dark>mdi-cloud-upload</v-icon>
             </v-btn>
+            <input
+              type="file"
+              @change="imageLoad"
+              style="display:none"
+              ref="fileInput"
+              accept="image/*"
+            />
           </v-flex>
         </v-layout>
         <v-layout wrap>
           <v-flex xs12>
-            <img src="https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg" height="200" />
+            <img :src="imageSrc" v-if="imageSrc" height="200" />
           </v-flex>
         </v-layout>
         <v-layout wrap>
@@ -59,7 +66,9 @@ export default {
     return {
       title: "",
       promo: false,
-      description: ""
+      description: "",
+      image: null,
+      imageSrc: ""
     };
   },
   computed: {
@@ -67,13 +76,31 @@ export default {
       return this.$store.getters.loading;
     }
   },
+
   methods: {
+    trigger() {
+      this.$refs.fileInput.click();
+    },
+    imageLoad(e) {
+      const file = e.target.files[0];
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imageSrc = reader.result;
+      };
+
+      reader.readAsDataURL(file);
+      this.image = file;
+    },
+
     createAd() {
       const ad = {
         title: this.title,
+        description: this.description,
         promo: this.promo,
-        src: "https://cdn.shazoo.ru/309070_dYM2kid3qv_19_12.jpg"
+        src: this.image
       };
+
       this.$store
         .dispatch("createAnime", ad)
         .then(() => {

@@ -12,6 +12,9 @@
               <v-card-text>
                 <h2 class="text--primary">{{ad.title}}</h2>
               </v-card-text>
+              <v-card-text>
+                <h2 class="text--primary">{{ad.description}}</h2>
+              </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn :to="`/anime/${ad.id}`" class="info">Open</v-btn>

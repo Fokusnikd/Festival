@@ -1,9 +1,23 @@
 import * as fb from 'firebase';
 class Cosplay {
-  constructor(title, src = "", animeId, id = null, ) {
+  constructor(
+    title,
+    src = "",
+    animeId,
+    type,
+    description,
+    videoSrc,
+    dataTime,
+    festivalId,
+    id = null, ) {
     this.title = title,
       this.src = src,
       this.animeId = animeId,
+      this.type = type,
+      this.description = description,
+      this.videoSrc = videoSrc,
+      this.dataTime = dataTime,
+      this.festivalId = festivalId,
       this.id = id
 
   }
@@ -15,6 +29,7 @@ export default {
   mutations: {
     createCosplay(state, payload) {
       state.cosplay.push(payload);
+
     },
     loadCosplay(state, payload) {
       state.cosplay = payload;
@@ -29,18 +44,36 @@ export default {
     }, payload) {
       commit('cleanError')
       commit('setLoading', true)
+
+      const image = payload.src;
+
       try {
         const newCosplay = new Cosplay(
           payload.title,
-          payload.src,
-          payload.animeId
+          '',
+          payload.animeId,
+          payload.type,
+          payload.description,
+          payload.videoSrc,
+          payload.dataTime,
+          payload.festivalId,
         )
-        const fbValue = await fb.database().ref('cosplay').push(newCosplay)
+        const fbCosplay = await fb.database().ref('cosplay').push(newCosplay);
+        const imageExt = image.name.slice(image.name.lastIndexOf('.'))
+        const fileData = await fb.storage().ref(`cosplay/${fbCosplay.key}.${imageExt}`).put(image)
+        console.log(fileData)
+        const imageSrc = await fileData.ref.getDownloadURL();
+        console.log(imageSrc)
+        await fb.database().ref('cosplay').child(fbCosplay.key).update({
+          src: imageSrc
+        })
 
         commit('createCosplay', {
           ...newCosplay,
-          id: fbValue.key
+          id: fbCosplay.key,
+          src: imageSrc
         })
+
         commit('setLoading', false)
       } catch (error) {
         commit('setError', error.mesage);
@@ -65,6 +98,11 @@ export default {
               ad.title,
               ad.src,
               ad.animeId,
+              ad.type,
+              ad.description,
+              ad.videoSrc,
+              ad.dataTime,
+              ad.festivalId,
               key)
           );
         });

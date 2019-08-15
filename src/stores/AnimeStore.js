@@ -1,9 +1,10 @@
 import * as fb from 'firebase';
 class Anime {
-  constructor(title, src = "", promo = false, id = null) {
+  constructor(title, description, promo = false, src = "", id = null) {
     this.title = title,
-      this.src = src,
+      this.description = description,
       this.promo = promo,
+      this.src = src,
       this.id = id
 
 
@@ -28,19 +29,36 @@ export default {
     }, payload) {
       commit('cleanError')
       commit('setLoading', true)
+
+      const image = payload.src;
+
+
       try {
         const newAnime = new Anime(
           payload.title,
-          payload.src,
+          payload.description,
           payload.promo,
+          ''
 
         )
-        console.log(newAnime)
-        const fbValue = await fb.database().ref('anime').push(newAnime)
+        const fbAnime = await fb.database().ref('anime').push(newAnime);
 
-        commit('createCosplay', {
+        const imageExt = image.name.slice(image.name.lastIndexOf('.'));
+
+        const fileData = await fb.storage().ref(`anime/${fbAnime.key}.${imageExt}`).put(image)
+
+        const imageSrc = await fileData.ref.getDownloadURL();
+
+        await fb.database().ref('anime').child(fbAnime.key).update({
+          src: imageSrc
+        })
+
+
+        commit('createAnime', {
           ...newAnime,
-          id: fbValue.key
+          src: imageSrc,
+          id: fbAnime.key,
+
         })
         commit('setLoading', false)
       } catch (error) {
@@ -64,12 +82,14 @@ export default {
           resultAnime.push(
             new Anime(
               ad.title,
-              ad.src,
+              ad.description,
               ad.promo,
+              ad.src,
               key,
-              ad.description)
+            )
           );
         });
+
         commit('loadAnime', resultAnime);
         commit('setLoading', false);
       } catch (error) {
@@ -77,8 +97,6 @@ export default {
         commit('setLoading', false);
         throw error;
       }
-
-
     }
   },
   getters: {

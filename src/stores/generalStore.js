@@ -1,7 +1,9 @@
 export default {
   state: {
     loading: false,
-    error: null
+    error: null,
+    typeOfPerformance: ['cosplay', 'dance', 'vocal'],
+    cities: ['Воронеж', 'Ростов', 'Москва', 'Киев', 'Ижевск']
   },
   mutations: {
     setLoading(state, payload) {
@@ -32,6 +34,12 @@ export default {
     }
   },
   getters: {
+    cities(state) {
+      return state.cities;
+    },
+    typeOfPerformance(state) {
+      return state.typeOfPerformance;
+    },
     loading(state) {
       return state.loading;
     },
