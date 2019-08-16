@@ -45,7 +45,9 @@
         <!-- /// -->
         <v-form>
           <v-row>
-            <v-col cols="12" sm="6"></v-col>
+            <v-col cols="12" sm="6">
+              <v-text-field label="Сrew title" name="Crew" type="text" v-model="crew"></v-text-field>
+            </v-col>
             <v-col cols="12" sm="6">
               <v-menu
                 ref="menu"
@@ -79,6 +81,9 @@
           </v-row>
         </v-form>
         <!-- /// -->
+        <v-form>
+          <v-row></v-row>
+        </v-form>
         <v-layout wrap class="mb-3">
           <v-flex xs12>
             <v-spacer></v-spacer>
@@ -124,9 +129,10 @@ export default {
       description: "",
       image: null,
       imageSrc: "",
-      videoSrc: "",
+      videoSrc: "https://www.youtube.com/watch?v=Y3jlodd6T4g",
       dataTime: [],
-      festivalId: "",
+      festivalId: "1",
+      crew: "",
       menu: false
     };
   },
@@ -167,9 +173,10 @@ export default {
         description: this.description,
         videoSrc: this.videoSrc,
         dataTime: this.dataTime,
-        festivalId: "1"
+        festivalId: "1",
+        crew: this.crew
       };
-      console.log([1, ad]);
+      console.log(ad);
       this.$store
         .dispatch("createCosplay", ad)
         .then(() => {

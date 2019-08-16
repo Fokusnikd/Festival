@@ -9,7 +9,11 @@
             :src="item.src"
             reverse-transition="fade-transition"
             transition="fade-transition"
-          ></v-carousel-item>
+          >
+            <div class="anime-link">
+              <v-btn class="error" :to="'/anime/'+item.id">{{item.title}}</v-btn>
+            </div>
+          </v-carousel-item>
         </v-carousel>
       </v-flex>
     </v-layout>
@@ -27,3 +31,16 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.anime-link {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  background: rgba(0, 0, 0, 0.3);
+  transform: translate(-50%, 0);
+  padding: 15px 15px 15px 15px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+</style>

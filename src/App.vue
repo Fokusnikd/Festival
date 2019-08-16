@@ -20,7 +20,7 @@
         <v-app-bar-nav-icon class="hidden-md-and-up" @click="drawer=!drawer"></v-app-bar-nav-icon>
 
         <v-toolbar-title class="pointer">
-          <router-link to="/" tag="span">AD application</router-link>
+          <router-link to="/" tag="span">Fandom Performance</router-link>
         </v-toolbar-title>
 
         <v-spacer></v-spacer>
@@ -78,19 +78,14 @@ export default {
     links() {
       if (this.isUserLoggedIn) {
         return [
-          { title: "Anime", icon: "mdi-star", url: "/anime" },
-          { title: "NewAnime", icon: "mdi-star", url: "/newAnime" },
-          { title: "AnimeList", icon: "mdi-star", url: "/animeList" },
-          { title: "Cosplay", icon: "mdi-star", url: "/cosplay" },
-          { title: "NewCosplay", icon: "mdi-star", url: "/newCosplay" },
-          { title: "CosplayList", icon: "mdi-star", url: "/cosplaylist" }
+          { title: "New Fandom", icon: "mdi-star", url: "/newAnime" },
+          { title: "Fandoms", icon: "mdi-star", url: "/animeList" }
         ];
       }
       {
         return [
           { title: "Login", icon: "mdi-star", url: "/login" },
-          { title: "Registration", icon: "mdi-star", url: "/registration" },
-          { title: "AnimeList", icon: "mdi-star", url: "/animeList" }
+          { title: "Registration", icon: "mdi-star", url: "/registration" }
         ];
       }
     }

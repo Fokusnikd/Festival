@@ -4,20 +4,24 @@ class Cosplay {
     title,
     src = "",
     animeId,
+    city,
     type,
     description,
     videoSrc,
     dataTime,
     festivalId,
+    crew,
     id = null, ) {
     this.title = title,
       this.src = src,
       this.animeId = animeId,
+      this.city = city,
       this.type = type,
       this.description = description,
       this.videoSrc = videoSrc,
       this.dataTime = dataTime,
       this.festivalId = festivalId,
+      this.crew = crew,
       this.id = id
 
   }
@@ -30,9 +34,12 @@ export default {
     createCosplay(state, payload) {
       state.cosplay.push(payload);
 
+
     },
     loadCosplay(state, payload) {
       state.cosplay = payload;
+
+
 
 
     }
@@ -52,18 +59,18 @@ export default {
           payload.title,
           '',
           payload.animeId,
+          payload.city,
           payload.type,
           payload.description,
           payload.videoSrc,
           payload.dataTime,
           payload.festivalId,
+          payload.crew
         )
         const fbCosplay = await fb.database().ref('cosplay').push(newCosplay);
         const imageExt = image.name.slice(image.name.lastIndexOf('.'))
         const fileData = await fb.storage().ref(`cosplay/${fbCosplay.key}.${imageExt}`).put(image)
-        console.log(fileData)
         const imageSrc = await fileData.ref.getDownloadURL();
-        console.log(imageSrc)
         await fb.database().ref('cosplay').child(fbCosplay.key).update({
           src: imageSrc
         })
@@ -98,12 +105,13 @@ export default {
               ad.title,
               ad.src,
               ad.animeId,
+              ad.city,
               ad.type,
               ad.description,
               ad.videoSrc,
               ad.dataTime,
               ad.festivalId,
-              key)
+              ad.crew, key)
           );
         });
 
@@ -134,8 +142,6 @@ export default {
     },
     cosplayById2(state) {
       return adId => {
-        console.log(state.cosplay)
-
         return state.cosplay.filter(ad => ad.animeId === adId);
       }
     }
