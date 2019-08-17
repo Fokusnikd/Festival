@@ -79,7 +79,8 @@ export default {
       if (this.isUserLoggedIn) {
         return [
           { title: "New Fandom", icon: "mdi-star", url: "/newAnime" },
-          { title: "Fandoms", icon: "mdi-star", url: "/animeList" }
+          { title: "Fandoms", icon: "mdi-star", url: "/animeList" },
+          { title: "Festivals", icon: "mdi-star", url: "/festivalList" }
         ];
       }
       {

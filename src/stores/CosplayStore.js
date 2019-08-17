@@ -81,11 +81,11 @@ export default {
           src: imageSrc
         })
 
-        commit('setLoading', false)
+        commit('setLoading', false);
       } catch (error) {
         commit('setError', error.mesage);
-        commit('setLoading', false)
-        throw error
+        commit('setLoading', false);
+        throw error;
       }
 
     },

@@ -3,6 +3,7 @@ export default {
     loading: false,
     error: null,
     typeOfPerformance: ['cosplay', 'dance', 'vocal'],
+    typeOfFestival: ['Cons', 'Xz', 'Garage'],
     cities: ['Воронеж', 'Ростов', 'Москва', 'Киев', 'Ижевск']
   },
   mutations: {
@@ -39,6 +40,9 @@ export default {
     },
     typeOfPerformance(state) {
       return state.typeOfPerformance;
+    },
+    typeOfFestival(state) {
+      return state.typeOfFestival;
     },
     loading(state) {
       return state.loading;

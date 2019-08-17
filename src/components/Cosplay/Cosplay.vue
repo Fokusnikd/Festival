@@ -31,7 +31,7 @@ export default {
   computed: {
     Cosplay() {
       const id = this.id;
-      console.log([1, this.$store.getters.cosplayById(id)]);
+
       return this.$store.getters.cosplayById(id);
     }
   }

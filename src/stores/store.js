@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import Cosplay from "./CosplayStore";
+import Festival from './FestivalStore';
 import Anime from "./AnimeStore";
 import User from "./userStore";
 import General from "./generalStore";
@@ -12,6 +13,7 @@ export default new Vuex.Store({
     Cosplay,
     Anime,
     User,
-    General
+    General,
+    Festival
   }
 });

@@ -9,6 +9,9 @@ import NewCosplay from "../components/Cosplay/NewCosplay";
 import AnimeList from "../components/Title/AnimeList";
 import Anime from "../components/Title/Anime";
 import NewAnime from "../components/Title/NewAnime";
+import Festival from "../components/Fest/Festival";
+import FestivalList from "../components/Fest/FestivalList";
+import NewFestival from "../components/Fest/NewFestival";
 
 Vue.use(Router);
 
@@ -66,6 +69,24 @@ export default new Router({
       path: "/newAnime",
       name: "newanime",
       component: NewAnime,
+
+    },
+    {
+      path: "/festivalList",
+      name: "festivalList",
+      component: FestivalList
+    },
+
+    {
+      path: "/festival/:id",
+      props: true,
+      name: "festival",
+      component: Festival
+    },
+    {
+      path: "/newFestival",
+      name: "newfestival",
+      component: NewFestival,
 
     },
   ]

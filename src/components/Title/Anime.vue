@@ -55,7 +55,7 @@ export default {
     },
     myCosplay() {
       const id = this.id;
-      console.log(this.$store.getters.cosplay);
+
       return this.$store.getters.cosplayById2(id);
     }
   }
