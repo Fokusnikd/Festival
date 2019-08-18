@@ -1,3 +1,4 @@
+
 <template>
   <v-container>
     <v-layout wrap>
@@ -46,7 +47,16 @@
         <v-form>
           <v-row>
             <v-col cols="12" sm="6">
-              <v-text-field label="Сrew title" name="Crew" type="text" v-model="crew"></v-text-field>
+              <v-select
+                v-model="crewId"
+                :items="crews"
+                item-text="title"
+                label="Crew"
+                persistent-hint
+                return-object
+                single-line
+              ></v-select>
+              <v-btn dark to="/newCrew">Add crew</v-btn>
             </v-col>
             <v-col cols="12" sm="6">
               <v-menu
@@ -82,7 +92,20 @@
         </v-form>
         <!-- /// -->
         <v-form>
-          <v-row></v-row>
+          <v-row>
+            <v-col cols="12" sm="6">
+              <v-select
+                v-model="festivalId"
+                :items="festivals"
+                item-text="title"
+                label="Festival"
+                persistent-hint
+                return-object
+                single-line
+              ></v-select>
+            </v-col>
+            <v-col cols="12" sm="6"></v-col>
+          </v-row>
         </v-form>
         <v-layout wrap class="mb-3">
           <v-flex xs12>
@@ -131,8 +154,8 @@ export default {
       imageSrc: "",
       videoSrc: "https://www.youtube.com/watch?v=Y3jlodd6T4g",
       dataTime: [],
-      festivalId: "1",
-      crew: "",
+      festivalId: "",
+      crewId: "",
       menu: false
     };
   },
@@ -141,9 +164,13 @@ export default {
       return this.$store.getters.cities;
     },
     typeOfPerformance() {
-      console.log(1);
-      console.log(this.$store.getters.typeOfPerformance);
       return this.$store.getters.typeOfPerformance;
+    },
+    festivals() {
+      return this.$store.getters.festival;
+    },
+    crews() {
+      return this.$store.getters.crew;
     },
     loading() {
       return this.$store.getters.loading;
@@ -173,10 +200,11 @@ export default {
         description: this.description,
         videoSrc: this.videoSrc,
         dataTime: this.dataTime,
-        festivalId: "1",
-        crew: this.crew
+        festivalId: this.festivalId.id,
+        crew: this.crewId.id
       };
       console.log(ad);
+
       this.$store
         .dispatch("createCosplay", ad)
         .then(() => {

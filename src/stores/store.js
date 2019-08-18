@@ -5,6 +5,7 @@ import Festival from './FestivalStore';
 import Anime from "./AnimeStore";
 import User from "./userStore";
 import General from "./generalStore";
+import Crew from "./СrewStore";
 
 Vue.use(Vuex);
 
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     Anime,
     User,
     General,
-    Festival
+    Festival,
+    Crew
   }
 });

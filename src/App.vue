@@ -80,7 +80,8 @@ export default {
         return [
           { title: "New Fandom", icon: "mdi-star", url: "/newAnime" },
           { title: "Fandoms", icon: "mdi-star", url: "/animeList" },
-          { title: "Festivals", icon: "mdi-star", url: "/festivalList" }
+          { title: "Festivals", icon: "mdi-star", url: "/festivalList" },
+          { title: "Crews", icon: "mdi-star", url: "/crewList" }
         ];
       }
       {

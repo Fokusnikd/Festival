@@ -38,10 +38,6 @@ export default {
     },
     loadCosplay(state, payload) {
       state.cosplay = payload;
-
-
-
-
     }
   },
   actions: {
@@ -113,6 +109,7 @@ export default {
               ad.festivalId,
               ad.crew, key)
           );
+
         });
 
         commit('loadCosplay', resultCosplay);

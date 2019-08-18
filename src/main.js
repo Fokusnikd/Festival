@@ -32,6 +32,7 @@ new Vue({
     });
     this.$store.dispatch('fetchAnime');
     this.$store.dispatch("fetchFestival");
+    this.$store.dispatch("fetchCrew");
     this.$store.dispatch("fetchCosplay");
   }
 }).$mount("#app");
