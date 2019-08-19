@@ -11,7 +11,8 @@ class Cosplay {
     dataTime,
     festivalId,
     crew,
-    id = null, ) {
+    id = null
+  ) {
     this.title = title,
       this.src = src,
       this.animeId = animeId,
@@ -27,26 +28,27 @@ class Cosplay {
   }
 }
 export default {
+
   state: {
     cosplay: []
   },
+
   mutations: {
     createCosplay(state, payload) {
       state.cosplay.push(payload);
-
-
     },
     loadCosplay(state, payload) {
       state.cosplay = payload;
     }
   },
+
   actions: {
 
     async createCosplay({
       commit
     }, payload) {
-      commit('cleanError')
-      commit('setLoading', true)
+      commit('cleanError');
+      commit('setLoading', true);
 
       const image = payload.src;
 
@@ -62,20 +64,21 @@ export default {
           payload.dataTime,
           payload.festivalId,
           payload.crew
-        )
+        );
+
         const fbCosplay = await fb.database().ref('cosplay').push(newCosplay);
-        const imageExt = image.name.slice(image.name.lastIndexOf('.'))
-        const fileData = await fb.storage().ref(`cosplay/${fbCosplay.key}.${imageExt}`).put(image)
+        const imageExt = image.name.slice(image.name.lastIndexOf('.'));
+        const fileData = await fb.storage().ref(`cosplay/${fbCosplay.key}.${imageExt}`).put(image);
         const imageSrc = await fileData.ref.getDownloadURL();
         await fb.database().ref('cosplay').child(fbCosplay.key).update({
           src: imageSrc
-        })
+        });
 
         commit('createCosplay', {
           ...newCosplay,
           id: fbCosplay.key,
           src: imageSrc
-        })
+        });
 
         commit('setLoading', false);
       } catch (error) {
@@ -83,8 +86,8 @@ export default {
         commit('setLoading', false);
         throw error;
       }
-
     },
+
     async fetchCosplay({
       commit
     }) {
@@ -94,6 +97,7 @@ export default {
       try {
         const fbVal = await fb.database().ref('cosplay').once('value');
         const cosplay = fbVal.val();
+
         Object.keys(cosplay).forEach(key => {
           const ad = cosplay[key];
           resultCosplay.push(
@@ -119,7 +123,6 @@ export default {
         commit('setLoading', false);
         throw error;
       }
-
 
     }
   },

@@ -15,6 +15,7 @@ import NewFestival from "../components/Fest/NewFestival";
 import Crew from "../components/Crew/Crew";
 import CrewList from "../components/Crew/CrewList";
 import NewCrew from "../components/Crew/NewCrew";
+import Members from "../components/General/NewMember";
 
 Vue.use(Router);
 
@@ -109,6 +110,12 @@ export default new Router({
       path: "/newCrew",
       name: "newcrew",
       component: NewCrew,
+
+    },
+    {
+      path: "/newMember",
+      name: "newmember",
+      component: Members,
 
     },
   ]

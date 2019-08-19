@@ -11,7 +11,7 @@
             transition="fade-transition"
           >
             <div class="anime-link">
-              <v-btn class="error" :to="'/anime/'+item.id">{{item.title}}</v-btn>
+              <v-btn class="error" :to="'/anime/'+item.id">Open</v-btn>
             </div>
           </v-carousel-item>
         </v-carousel>

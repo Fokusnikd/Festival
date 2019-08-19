@@ -40,8 +40,7 @@ export default {
           payload.title,
           payload.description,
           payload.contacts,
-          payload.memberId,
-          payload.festivalId
+          payload.memberId
         )
         const fbCrew = await fb.database().ref('crew').push(newCrew);
 
@@ -92,21 +91,12 @@ export default {
   getters: {
     crew(state) {
       return state.crew;
-    },
-    promoCrew(state) {
-      return state.crew.filter(ad => {
-        return ad.promo;
-      });
-    },
-    crewById(state) {
-      return adId => {
-        return state.crew.find(ad => ad.id === adId);
-      };
-    },
-    crewById2(state) {
-      return adId => {
-        return state.crew.filter(ad => ad.animeId === adId);
-      };
+    }
+  },
+  crewById(state) {
+    return adId => {
+      console.log(state.crew.find(ad => ad.id === adId))
+      return state.crew.find(ad => ad.id === adId);
     }
   }
 };

@@ -4,7 +4,8 @@ export default {
     error: null,
     typeOfPerformance: ['cosplay', 'dance', 'vocal'],
     typeOfFestival: ['Cons', 'Xz', 'Garage'],
-    cities: ['Воронеж', 'Ростов', 'Москва', 'Киев', 'Ижевск']
+    cities: ['Воронеж', 'Ростов', 'Москва', 'Киев', 'Ижевск'],
+    typeOfMember: ['Троль', 'Лжец', 'Девственник']
   },
   mutations: {
     setLoading(state, payload) {
@@ -40,6 +41,9 @@ export default {
     },
     typeOfPerformance(state) {
       return state.typeOfPerformance;
+    },
+    typeOfMember(state) {
+      return state.typeOfMember;
     },
     typeOfFestival(state) {
       return state.typeOfFestival;

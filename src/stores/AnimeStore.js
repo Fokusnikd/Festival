@@ -6,8 +6,6 @@ class Anime {
       this.promo = promo,
       this.src = src,
       this.id = id
-
-
   }
 }
 export default {
@@ -39,14 +37,11 @@ export default {
           payload.description,
           payload.promo,
           ''
+        );
 
-        )
         const fbAnime = await fb.database().ref('anime').push(newAnime);
-
         const imageExt = image.name.slice(image.name.lastIndexOf('.'));
-
         const fileData = await fb.storage().ref(`anime/${fbAnime.key}.${imageExt}`).put(image)
-
         const imageSrc = await fileData.ref.getDownloadURL();
 
         await fb.database().ref('anime').child(fbAnime.key).update({

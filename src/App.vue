@@ -12,6 +12,14 @@
                 <v-list-item-title v-text="link.title"></v-list-item-title>
               </v-list-item-content>
             </v-list-item>
+            <v-list-item v-if="isUserLoggedIn" :to="'/'" @click="onLogout">
+              <v-list-item-icon>
+                <v-icon>mdi-exit-to-app</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>Log out</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
           </v-list-item-group>
         </v-list>
       </v-navigation-drawer>
